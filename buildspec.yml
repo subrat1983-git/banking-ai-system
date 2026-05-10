@@ -15,8 +15,8 @@ phases:
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t banking-ai-agent .
-      - docker tag banking-ai-agent:latest $REPOSITORY_URI:latest
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag  $REPOSITORY_URI:latest
 
   post_build:
     commands:

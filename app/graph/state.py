@@ -5,4 +5,3 @@ class AgentState(TypedDict):
     category : Optional[str]
     response : Optional[str]
     ticket_id : Optional[int]
-    history : List[str]

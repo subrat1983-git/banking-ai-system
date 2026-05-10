@@ -8,4 +8,4 @@ class SupportTicket(Base):
     ticket_id = Column(Integer,primary_key=True,index=True)
     message = Column(String,nullable=False)
     status = Column(String,nullable=False,default="OPEN")
-    created_at = Column(DateTime, default=datetime)
+    created_at = Column(DateTime, default=datetime.now)

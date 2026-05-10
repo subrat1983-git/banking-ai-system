@@ -2,7 +2,6 @@ from langgraph.graph import StateGraph, END
 from langsmith import traceable
 
 from app.graph.state import AgentState
-from app.graph.memory import get_memory, save_memory
 
 from app.agents.classifier_agent import classify_message
 from app.agents.feedback_agent import (
@@ -15,8 +14,8 @@ from app.agents.query_agent import handle_query
 def classifier_node(state):
 
     category = classify_message(
-        state["user_input"],
-        state["history"]
+        state["user_input"]
+
     )
 
     return {
@@ -46,8 +45,8 @@ def feedback_node(state):
 def query_node(state):
 
     response = handle_query(
-        state["user_input"],
-        state["history"]
+        state["user_input"]
+
     )
 
     return {
@@ -103,24 +102,16 @@ graph = graph_builder.compile()
 @traceable(name="LangGraph Workflow")
 def run_workflow(user_input, session_id):
 
-    history = get_memory(session_id)
+
 
     result = graph.invoke({
         "user_input": user_input,
         "category": None,
         "response": None,
-        "ticket_id": None,
-        "history": history
+        "ticket_id": None
+
     })
 
-    updated_history = history + [
-        f"User: {user_input}",
-        f"Bot: {result['response']}"
-    ]
 
-    save_memory(
-        session_id,
-        updated_history
-    )
 
     return result
