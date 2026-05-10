@@ -9,7 +9,7 @@ def classify_message(user_input,history=[]):
 
     history_text= "\n".join(history)
     prompt = f"""
-       Conversation History :
+       Conversation History:
        {history_text}
 
        Classify this banking support message into:
