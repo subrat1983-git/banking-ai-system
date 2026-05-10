@@ -23,7 +23,7 @@ phases:
       - echo Pushing Docker image...
       - docker push $REPOSITORY_URI:latest
 
-      - printf '[{"name":"banking-ai-agent","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"ai-banking-support-system","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
 
 artifacts:
   files:
